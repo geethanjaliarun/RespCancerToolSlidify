@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Respiratory Cancer Query Tool</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Respiratory Cancer Query Tool">
+  <meta name="author" content="Geethanjali Arun">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Respiratory Cancer Query Tool</h1>
+    <h2>Design Document</h2>
+    <p>Geethanjali Arun<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What does this application do?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>This application is a data exploration and visualization tool for the respiratory cancer counts and rates across the United states.</li>
+<li>Data is sourced from the CDC website.</li>
+<li>Data covers all the regions.</li>
+<li>Data covers the time period 1999 - 2012.</li>
+<li>Data has 5 variables : cancer site, age group, gender, race and ethnicity.</li>
+<li>The count metric reports the frequency of verified cancer diagnoses in the selected population.</li>
+<li>The crude rate is expressed as the number of cases reported each calendar year per 100,000 population.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summarise page</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>This page displays the count and crude rate for the selected inputs.</p></li>
+<li><p>The page has 5 drop down menus.</p></li>
+<li><p>The inputs are the desired cancer site, age group, gender, race and ethnicity.</p></li>
+<li><p>The drop down shows the available options.</p></li>
+<li><p>A click on the &#39;GET&#39; button displays the metrics on the right side panel, instantaneously.</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Visualize page</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>This page displays the count in a bar chart format.</p></li>
+<li><p>It has an input field with a drop down menu showing 5 options.</p></li>
+<li><p>Once the &#39;PLOT&#39; button is pressed, the bar chart is displayed on the right panel.</p></li>
+<li><p>The plot shows the count, with the legend. </p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Sample Query</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">colClassVector = c(&quot;character&quot;, &quot;factor&quot;, &quot;factor&quot;, &quot;factor&quot;, &quot;factor&quot;,
+                   &quot;factor&quot;,&quot;factor&quot;,&quot;factor&quot;, &quot;factor&quot;, &quot;factor&quot;, 
+                   &quot;factor&quot;, &quot;numeric&quot;, &quot;numeric&quot;, &quot;numeric&quot;)
+cancerData = read.delim(&quot;resp_cancer_data.txt&quot;,header = TRUE,
+                        sep=&quot;\t&quot;, na.strings = &quot;Not Applicable&quot;,
+                        nrows = 839)
+d = group_by(cancerData, Cancer.Sites) 
+m = filter(d, Cancer.Sites == &quot;Larynx&quot; &amp; Age.Group.Code == &quot;20-24&quot; 
+           &amp; Sex.Code == &quot;M&quot; &amp; Race == &quot;White&quot; &amp; Ethnicity == &quot;Non-Hispanic&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;Count and Crude Rate for Larnyx,20-24,Male,White,Non-Hispanic is &quot;
+</code></pre>
+
+<pre><code>## [1] 28
+</code></pre>
+
+<pre><code>## [1] 0.03
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What does this application do?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Summarise page'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Visualize page'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Sample Query'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
